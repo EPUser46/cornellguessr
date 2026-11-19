@@ -1,0 +1,14 @@
+type coord = {lat: float; lon: float}
+type location = {coord: coord; photo: string}
+
+(**[t] represents the data*)
+type t = {locations: location list}
+
+(**[init] initializes the data with a list of locations*)
+let init (locations:location list) : t = failwith "not implemented"
+
+(**[distance] calculates the distance between two coordinates*)
+let distance (c1:coord) (c2:coord) : float = failwith "not implemented"
+
+(**[pick] randomly picks a photo*)
+let pick (data:t) (rng:Random.State.t) : location = failwith "not implemented"
