@@ -1,3 +1,2 @@
 (library
- (name cornellguessr)
- (modules_without_implementation accounts))
+ (name cornellguessr))
