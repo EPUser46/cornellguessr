@@ -1,3 +1,4 @@
 (test
  (name test_cornellguessr)
- (libraries cornellguessr))
+ (libraries cornellguessr ounit2)
+ (deps (glob_files ../public/photos/*)))
