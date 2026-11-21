@@ -9,10 +9,6 @@ type board
 (** The leaderboard. Represented as an [entry list]. Always sorted from best
     (highest) to worst score. *)
 
-val valid_name : string -> bool
-(** [valid_name s] checks whether a player name [s] is valid. Example: Names
-    must be at most 22 characters long. *)
-
 val empty : board
 (** [empty] is a leaderboard with no entries, for initialization. *)
 
