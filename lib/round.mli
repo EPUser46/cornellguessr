@@ -1,6 +1,5 @@
 type result = {
-     guess: Data.coord option;
-     distance: float option;
+     distance: float;
      points: int;
 }
 
@@ -8,7 +7,7 @@ type result = {
 type t
 
 (**[create] creates a new round. takes in a random number generator *)
-val create: Random.State.t -> float -> t
+val create: Random.State.t -> Data.t -> float -> t
 
 (**[location] returns the round's location*)
 val location: t -> Data.location
