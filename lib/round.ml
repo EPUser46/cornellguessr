@@ -11,7 +11,7 @@ type t = {
 
 (**[create] creates a new round. takes in a random number generator *)
 let create (rng : Random.State.t) (data : Data.t) : t =
-  { location = Data.pick data rng; start_time = now; timer = Timer.create 5 }
+  { location = Data.pick data rng; timer = Timer.create 5 }
 
 (**[location] returns the round's location*)
 let location t : Data.location = t.location
