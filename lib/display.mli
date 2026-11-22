@@ -14,7 +14,7 @@ val init_round : unit -> t
 val reset_round : t -> unit
 
 (* Shows image of random location*)
-val show_file: t -> location -> unit
+val show_image: t -> location -> unit
 
 (* shows result (points) of the round*)
 val show_result: t -> game -> unit
