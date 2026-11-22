@@ -1,4 +1,5 @@
-(test
- (name test_cornellguessr)
+(tests
+ (names test_cornellguessr test_accounts)
  (libraries cornellguessr ounit2)
- (deps (glob_files ../public/photos/*)))
+ (deps
+  (glob_files ../public/photos/*)))
