@@ -4,7 +4,7 @@ type t = {
   pin : Data.coord option;
   current : Round.t;
   result : Round.result option;
-  finished : Round.t list
+  finished : (Round.t * Round.result) list
 }
 (**The state of a game currently in progress. Contents of [t] can only be accessed by the getter functions defined below.*)
 
@@ -14,7 +14,10 @@ val total_rounds : int
 val init : Random.State.t -> Data.t -> t
 (**[init rng locs] is a new game whose locations (rounds) are picks from [locs]*)
 
-val place_pin : t -> float * float -> t
+val game_tick : t -> float -> t
+(**[game_tick state dt] updates the game state with an updated round based on the time elapsed [dt]*)
+
+val place_pin : t -> Data.coord -> t
 (**[place_pin state (lat, long)] is [state] with the current round's guess set to [(lat, lng)] (replaces earlier guesses). If current round submitted, [st] is unchanged.*)
 
 val submit : t -> t
@@ -31,7 +34,7 @@ val current_round : t -> Round.t
 val round_number : t -> int
 (**[round_number state] is the current round in integer, from 1 to [total_rounds]*)
 
-val finished_rounds : t -> Round.t list
+val finished_rounds : t -> (Round.t * Round.result) list
 (**[finished_rounds t] is the completed rounds, in order of which they were played.*)
 
 val total_points : t -> int
