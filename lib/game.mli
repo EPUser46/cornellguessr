@@ -1,4 +1,4 @@
-type t {
+type t = {
   rng : Random.State.t;
   data : Data.t;
   pin : Data.coord option;
