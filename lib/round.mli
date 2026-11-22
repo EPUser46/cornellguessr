@@ -16,4 +16,4 @@ val location: t -> Data.location
 val time_left: t -> float
 
 (**[guess] lets the user create a guess and returns the result*)
-val guess: t -> Data.coord -> float -> result
+val guess: t -> Data.coord -> result
