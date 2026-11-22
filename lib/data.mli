@@ -21,3 +21,6 @@ val location_of_json : Yojson.Safe.t -> location
 
 (**[locations] returns all the locations of data *)
 val locations: t -> location array
+
+(**[jpg_of_heic] converts an heic photo to a jpg photo and returns new path*)
+val jpg_of_heic : string -> string

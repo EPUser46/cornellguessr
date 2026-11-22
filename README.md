@@ -12,3 +12,6 @@ cs2582
 
 Angie Zhang
 az549
+
+Make sure to install exiftool and imagemagick:
+`brew install exiftool imagemagick`

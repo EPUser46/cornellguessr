@@ -2,4 +2,4 @@
  (names test_cornellguessr test_accounts)
  (libraries cornellguessr ounit2)
  (deps
-  (glob_files ../public/photos/*)))
+  (glob_files ../public/raw_photos/*)))
