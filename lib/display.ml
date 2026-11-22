@@ -1,10 +1,10 @@
 type game = Game.t
-type leaderboard = Account.board
+type leaderboard = Accounts.board
 type location = Data.location
 
 exception Not_implemented of string
 
-let init_round () = raise (Not_implemented "init_round")
+let init_round () = ()
 let show_folder (_ : location) = raise (Not_implemented "show_folder")
 let show_result (_ : game) = raise (Not_implemented "show_result")
 let show_hud (_ : game) = raise (Not_implemented "show_hud")

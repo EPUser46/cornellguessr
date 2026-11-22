@@ -47,6 +47,9 @@ let jpg_of_heic (heic : string) : string =
       (*gets the directory of /raw_pohtos and append to front of
         /jps_photos/*.jpg*)
       let out_dir = Filename.concat (Filename.dirname raw_dir) "jpg_photos" in
+      (*helpful message if not converted properly*)
+      if Sys.command ("mkdir -p " ^ Filename.quote out_dir) <> 0 then
+        failwith ("could not create " ^ out_dir);
       (* replace extension*)
       let jpg =
         Filename.concat out_dir (Filename.remove_extension (Filename.basename heic) ^ ".jpg")

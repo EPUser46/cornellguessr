@@ -1,5 +1,5 @@
 open Game
-open Account
+open Accounts
 
 type game = Game.t
 
@@ -8,7 +8,7 @@ type leaderboard = Accounts.board
 type location = Data.location
 
 (* Initiates UI for entire round may or may not be needed? *)
-val init_round : unit
+val init_round : unit -> unit
 
 (* Shows image of random location*)
 val show_folder: location -> unit

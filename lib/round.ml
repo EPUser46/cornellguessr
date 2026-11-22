@@ -3,21 +3,18 @@ type result = {
   points : int;
 }
 
-type t = {
-  location : Data.location;
-  timer : Timer.t;
-}
+type t = { location : Data.location (*TODO: timer : Timer.t; *) }
 (**[t] represents the round*)
 
 (**[create] creates a new round. takes in a random number generator *)
 let create (rng : Random.State.t) (data : Data.t) : t =
-  { location = Data.pick data rng; timer = Timer.create 5 }
+  { location = Data.pick data rng (*TODO: timer = Timer.create 5}*) }
 
 (**[location] returns the round's location*)
 let location t : Data.location = t.location
 
 (**[time_left] returns the amount of time left in the round*)
-let time_left t : float = Timer.left t.timer
+let time_left t : float = 100.0 (*TODO: replace with Timer.left t.timer*)
 
 let points (distance : float) : int = int_of_float distance
 
@@ -30,4 +27,5 @@ let guess t (guess : Data.coord) : result =
 
 (**[update_round] decrements the time and returns record with new timer *)
 let update_round (round : t) (dt : float) : t =
-  { round with timer = Timer.decrement round.timer dt }
+  (*TODO: replace with { round with timer = Timer.decrement round.timer dt }*)
+  round

@@ -1,4 +1,4 @@
 (executable
- (public_name cornellguessr)
- (name main)
- (libraries cornellguessr))
+(name main)
+ (modes js)
+ (libraries cornellguessr js_of_ocaml))
