@@ -1,5 +1,5 @@
 (tests
- (names test_cornellguessr test_accounts)
+ (names test_data test_accounts)
  (libraries cornellguessr ounit2)
  (deps
   (glob_files ../public/raw_photos/*)))
