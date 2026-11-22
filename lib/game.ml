@@ -5,7 +5,7 @@ type t = {
   current : Round.t;
   result : Round.result option;
   finished : Round.t list
-}
+} 
 let total_rounds = 5
 
 let init rng data =
@@ -13,7 +13,7 @@ let init rng data =
   
 let next_round state = 
   if Round.is_submitted state.current && round_number state  < total_rounds then
-    {state with finished = state.current :: st.finished; current = Round.create state.rng state.data}
+    {state with finished = state.current :: state.finished; current = Round.create state.rng state.data}
   else state
 
 let place_pin state coord = 
@@ -39,12 +39,3 @@ let total_points state =
 
 let is_over state = 
   if List.length state.finished = total_rounds then true else false
-
-
-
-
-
-
-
-
-
