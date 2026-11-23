@@ -49,7 +49,7 @@ let map_click_handler map callback =
         actually can either return latlng or data.t depending on if I want to expose
           this function *)
       update_guess current_marker map callback (Leaflet.Event.latlng event)
-  )
+  ) map
 
 let create_line (guess_coords: Data.coord )(img_coords: Data.coord) map =
   let coords = [| convert_coords guess_coords; convert_coords img_coords|] in

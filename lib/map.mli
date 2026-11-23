@@ -14,7 +14,7 @@ val create_map: string -> Data.coord -> int option -> Leaflet.Map.t
   a [Data.coord], and an int option for some zoom value, and returns a Leaflet Map module at [start_coords] with 
   the appropriate zoom. *)
 
-val map_click_handler: Leaflet.Map.t -> (Data.coord -> unit) -> Leaflet.Map.t -> unit
+val map_click_handler: Leaflet.Map.t -> (Data.coord -> unit) -> unit
 (** [map_click_handler map callback] creates an event listener for clickes on the map.
   It removes any old markers on the map, and creates a new marker at the clicked coordinates.
   Pass in callback function, which has clicked coordinates as arguments as a [Data.coord] type*)
