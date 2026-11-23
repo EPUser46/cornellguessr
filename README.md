@@ -15,3 +15,6 @@ az549
 
 Make sure to install exiftool and imagemagick:
 `brew install exiftool imagemagick`
+
+Install dependencies (leaflet in dune-project):
+`opam install --deps-only`

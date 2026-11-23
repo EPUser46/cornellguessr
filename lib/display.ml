@@ -23,7 +23,7 @@ type t = {
 let doc = Dom_html.document
 let set_text el s = el##.textContent := Js.some (Js.string s)
 
-let init () =
+let init_round () =
   let root = Dom_html.getElementById_exn "game" in
   let photo = Dom_html.createImg doc in
   let hud = Dom_html.createP doc in
@@ -75,7 +75,7 @@ let show_hud d (g : game) =
   let round = Game.current_round g in
   let score = Game.total_points g in
   let draw () =
-    let left = Float.max 0. (Round.time_left round (now ())) in
+    let left = Float.max 0. (Round.time_left round) in
     set_text d.hud (Printf.sprintf "%.0fs left · %d pts" (Float.ceil left) score);
     left
   in
@@ -86,7 +86,7 @@ let show_hud d (g : game) =
            (Js.wrap_callback (fun () -> if draw () <= 0. then stop_hud d))
            (Js.float hud_refresh_ms))
 let show_error d msg = set_text d.status msg
-let show_final (_ : game) = raise (Not_implemented "show_final")
+let show_final (t: t) (_ : game) = raise (Not_implemented "show_final")
 
 (* Number of leaderboard rows to display. *)
 let leaderboard_size = 10
