@@ -1,0 +1,55 @@
+(* Notes: 
+- by default, all mouse and touch interactions on the map are enabled, 
+  and it has zoom and attribution controls.
+- many leaflet functions have arguments which require labeled arguments,
+  do this by "~[ARG_NAME]:(var_name)"
+- so a tile layer is necessary to actually display what the geographic map looks like
+- there are like 23 options for creating a tile layer but using defaults rn
+- tile layer uses OpenStreetMap
+- there are also 12 options for creating a marker
+*)
+let t = {
+  guess_coords : float * float;
+  img_coords : float * float;
+}
+
+let convert_coords coords =
+  Leaflet.Latlng.create ~lat:(fst coords) ~lng:(snd coords)
+
+let create_map id start_coords zoom =
+  let latlng = convert_coords start_coords in
+  let new_map = Leaflet.Map.create_on id in
+  Leaflet.Map.set_view latlng ~zoom:zoom new_map;
+  (* add tile (openstreetmap) to map*)
+  let tile_layer = Leaflet.Layer.create_tile_osm [||] in
+  Leaflet.Layer.add_to new_map tile_layer;
+  new_map
+
+let change_marker marker map clicked_coords  =
+  (match !marker with
+  | Some marker -> Leaflet.Layer.remove marker
+  | None  -> ());
+  (* was thinking maybe you have to convert here, but can maybe do it elsewhere*)
+  let latlng = clicked_coords in
+  let new_marker = Leaflet.Marker.create latlng [||] in
+  Leaflet.Layer.add_to map new_marker;
+  marker:= Some new_marker
+
+let map_click_handler map callback =
+  Leaflet.Map.on Leaflet.Event.Click (
+    fun event ->
+      (* check if um this converts coords correctly to Data.t
+        actually can either return latlng or data.t depending on if I want to expose
+          this function *)
+      callback (Leaflet.Event.latlng event)
+  )
+  map
+
+let get_coords coords : Data.coord =
+  {Data.lat = Leaflet.Latlng.lat coords; Data.lon = Leaflet.Latlng.lng coords}
+
+let update_guess map guess_callback =
+  let current_marker = ref None in
+  map_click_handler map (fun coords ->
+    change_marker current_marker map coords;
+    guess_callback (get_coords coords)

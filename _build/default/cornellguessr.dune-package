@@ -1,0 +1,4 @@
+(lang dune 3.24)
+(name cornellguessr)
+(sections (lib .) (doc ../../doc/cornellguessr))
+(files (lib (META dune-package opam)) (doc (README.md)))
