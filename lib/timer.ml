@@ -9,3 +9,4 @@ let minutes_to_seconds minutes = minutes *. 60.0
 let start_time duration = (minutes_to_seconds duration)
 
 let create_timer duration = {remaining_time = ref (start_time duration)}
+let seconds_to_minutes seconds = seconds /. 60.0

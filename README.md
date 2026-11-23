@@ -17,13 +17,24 @@ az549
 Install dependencies (leaflet in dune-project):
 `opam install --deps-only`
 
-Install exiftool and imagemagick:
-`brew install exiftool imagemagick`
+To add new photos/locations:
 
-Command line:
-mkdir -p public/jpg_photos
-for f in public/raw_photos/*.[Hh][Ee][Ii][Cc]; do
-  magick "$f" -quality 90 "public/jpg_photos/$(basename "${f%.*}").jpg"
-done
+1. Install exiftool and imagemagick:
+```sh
+brew install exiftool imagemagick
+```
 
-exiftool -json -n -ext jpg -GPSLatitude -GPSLongitude public/jpg_photos > public/metadata.json
+2. Put images inside public/raw_photos
+
+3. Run these commands in the terminal inside /public:
+ ```sh
+   cd public
+   mkdir -p jpg_photos
+   for f in raw_photos/*.[Hh][Ee][Ii][Cc]; do
+     magick "$f" -quality 90 "jpg_photos/$(basename "${f%.*}").jpg"
+   done
+   exiftool -json -n -ext jpg -GPSLatitude -GPSLongitude jpg_photos > metadata.json
+   cd ..
+```
+
+4. Commit the files

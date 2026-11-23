@@ -5,8 +5,8 @@ open Cornellguessr
 let approx a b tolerance = abs_float (a -. b) < tolerance
 
 let test_data_init _ =
-let json = "../public/metadata.json" in
-let jpg_photo = "public/jpg_photos/IMG_6138.jpg" in
+let json = "../public/metadata_test.json" in
+let jpg_photo = "jpg_photos/IMG_6138.jpg" in
 let data = Data.init json in
 let loc = (Data.locations data).(0) in
 assert (approx loc.coord.lat 42.4464 1e-4);
@@ -14,8 +14,8 @@ assert (approx loc.coord.lon (-76.4859) 1e-4);
 assert (loc.photo = jpg_photo)
 
 let test_data_pick _ =
-let json = "../public/metadata.json" in
-  let jpg_photo = "public/jpg_photos/IMG_6138.jpg" in
+let json = "../public/metadata_test.json" in
+  let jpg_photo = "jpg_photos/IMG_6138.jpg" in
   let data = Data.init json in
   let rng = Random.State.make_self_init () in
   let loc = Data.pick data rng in

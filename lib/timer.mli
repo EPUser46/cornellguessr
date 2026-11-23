@@ -23,3 +23,5 @@ val time_up: t -> bool
 val create_timer: float -> t
 (** [create_timer minutes] expects an int in MINUTES, which it will convert to SECONDS,
   and returns a timer *)
+val seconds_to_minutes: float -> float
+(** [seconds_to_minutes seconds] returns a float in SECONDS converted to a float in MINUTES*)
