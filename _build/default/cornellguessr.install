@@ -1,8 +1,0 @@
-lib: [
-  "_build/install/default/lib/cornellguessr/META"
-  "_build/install/default/lib/cornellguessr/dune-package"
-  "_build/install/default/lib/cornellguessr/opam"
-]
-doc: [
-  "_build/install/default/doc/cornellguessr/README.md"
-]
