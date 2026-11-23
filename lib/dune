@@ -1,4 +1,4 @@
 (library
  (name cornellguessr)
  ; (modules data accounts)
-(libraries yojson unix leaflet))
+(libraries yojson unix js_of_ocaml js_of_ocaml-lwt lwt leaflet))
