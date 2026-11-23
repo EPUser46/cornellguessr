@@ -1,7 +1,28 @@
 (tests
  (names test_data test_accounts test_round)
+ (modules test_data test_accounts test_round)
  (libraries cornellguessr ounit2)
  (deps
-   ../public/metadata_test.json 
+   ../public/metadata_test.json
    ../public/metadata.json
   (glob_files ../public/jpg_photos/*)))
+
+(executable
+ (name test_display)
+ (modules test_display)
+ (modes js)
+ (libraries cornellguessr js_of_ocaml)
+ (js_of_ocaml
+  (flags (:standard --file %{dep:../public/metadata_test.json}))))
+
+(copy_files ../public/style.css)
+
+(rule
+ (target display.html)
+ (deps
+  display.template.html
+  test_display.bc.js
+  style.css
+  (glob_files jpg_photos/*.jpg))
+ (action
+  (copy display.template.html %{target})))
