@@ -5,5 +5,5 @@
 
 (rule
  (target index.html)
- (deps index.template.html main.js style.css)
+ (deps index.template.html main.js style.css (glob_files jpg_photos/*))
  (action (copy index.template.html %{target})))
