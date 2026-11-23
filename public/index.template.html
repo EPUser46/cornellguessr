@@ -13,14 +13,20 @@
         <h1>Cornell<span>\</span>Guessr</h1>
       </header>
 
-      <!-- MAP -->
-      <div id="map" style="height: 400px; width: 800px;"></div>
-      
       <p id="status" role="status">Click to begin.</p>
-      <section class="TBD">
-        <p id="card-side" class="eyebrow">Question</p>
-        <p id="card-text">Super Awesome Cornell Geography Guessing App :3</p>
+
+      <!-- Game -->
+      <section id="game"></section>
+
+      <!-- Map -->
+      <div id="map" style="height: 400px; width: 800px;"></div>
+
+      <!-- Round controls -->
+      <section id="controls">
+        <button id="guess-btn" type="button">Guess</button>
+        <button id="next-btn" type="button" disabled>Next round</button>
       </section>
+
       <section>
         <h2>Leaderboard</h2>
         <table id = "leaderboard" style ="width:100%">
