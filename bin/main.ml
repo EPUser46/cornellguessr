@@ -46,4 +46,15 @@ let () =
               Display.show_result display !game;
               let answer = (Round.location (Game.current_round !game)).coord in
               Map.create_line pin answer map;
-              set_disabled "guess-btn" true)
+              set_disabled "guess-btn" true;
+              (* Allow moving on, unless this was the last round. *)
+              if Game.round_number !game < Game.total_rounds then
+                set_disabled "next-btn" false);
+
+      (* Event handler for next round. *)
+      on_click "next-btn" (fun () ->
+          game := Game.next_round !game;
+          Display.reset_round display;
+          Display.show_image display (Round.location (Game.current_round !game));
+          set_disabled "guess-btn" false;
+          set_disabled "next-btn" true)

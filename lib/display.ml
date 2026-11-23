@@ -14,7 +14,6 @@ type t = {
   hud : Dom_html.element Js.t;
   result : Dom_html.element Js.t;
   status : Dom_html.element Js.t;
-  guess_btn : Dom_html.buttonElement Js.t;
   leaderboard: Dom_html.tableElement Js.t;
   mutable hud_timer : Dom_html.interval_id option;
       (* updating hud *)
@@ -29,7 +28,6 @@ let init_round () =
   let hud = Dom_html.createP doc in
   let result = Dom_html.createP doc in
   let status = Dom_html.createP doc in
-  let guess_btn = Dom_html.createButton doc in
   let leaderboard, extra =
     match Dom_html.getElementById_coerce "leaderboard" Dom_html.CoerceTo.table with
     | Some tbl -> (tbl, [])
@@ -37,11 +35,10 @@ let init_round () =
         let tbl = Dom_html.createTable doc in
         (tbl, [ (tbl :> Dom.node Js.t) ])
   in
-  set_text guess_btn "Guess";
   List.iter (fun e -> Dom.appendChild root e)
     ([ (photo :> Dom.node Js.t); (hud :> Dom.node Js.t); (result :> Dom.node Js.t);
-      (status :> Dom.node Js.t); (guess_btn :> Dom.node Js.t) ] @ extra);
-  { photo; hud; result; status; guess_btn ; leaderboard; hud_timer = None }
+      (status :> Dom.node Js.t) ] @ extra);
+  { photo; hud; result; status; leaderboard; hud_timer = None }
 
 let reset_round d = set_text d.result ""; set_text d.status "Where is this?"
 let show_image d (loc : location) =
