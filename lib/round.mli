@@ -20,3 +20,6 @@ val guess : t -> Data.coord -> result
 
 val update_round : t -> float -> t
 (**[update_round t dt] decrements the time and returns record with new timer *)
+
+val haversine_m : Data.coord -> Data.coord -> float
+(**[haversine_m a b] returns the meter difference between two coordinates *)
