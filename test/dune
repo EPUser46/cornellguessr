@@ -1,8 +1,8 @@
 (tests
 
- (names test_data test_accounts test_round test_timer)
+ (names test_data test_accounts test_round test_timer test_game)
  (libraries cornellguessr ounit2 js_of_ocaml)
- (modules test_data test_accounts test_round test_timer)
+ (modules test_data test_accounts test_round test_timer test_game)
 
  (deps
    ../public/metadata_test.json
@@ -11,8 +11,9 @@
   (preprocess (pps js_of_ocaml-ppx))
   )
 
-(executable 
+(executable
   (name test_browser_map)
+  (enabled_if (= %{profile} browser))
   (libraries playwright eio_main ounit2)
   )
 

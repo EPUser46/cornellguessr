@@ -14,7 +14,7 @@ test:
 
 # run browser tests
 test-browser:
-	dune exec ./test/test_browser_map.exe
+	dune exec --profile browser ./test/test_browser_map.exe
 
 clean:
 	dune clean
