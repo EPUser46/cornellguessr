@@ -4,10 +4,11 @@ type result = {
 }
 
 type t
-(**[t] represents the round*)
+(*round type*)
 
 val create : Random.State.t -> Data.t -> t
-(**[create rng data] creates a new round. takes in a random number generator *)
+(**[create rng data] creates a new round. takes in a random number generator and
+   data *)
 
 val location : t -> Data.location
 (**[location t] returns the round's location*)
