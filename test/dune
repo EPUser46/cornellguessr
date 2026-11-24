@@ -1,5 +1,5 @@
 (tests
- (names test_data test_accounts test_round)
+ (names test_data test_accounts test_round test_game)
  (libraries cornellguessr ounit2)
  (deps
    ../public/metadata_test.json 
