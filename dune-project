@@ -20,7 +20,16 @@
  (allow_empty)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml leaflet)
+ (depends
+  ocaml
+  leaflet
+  yojson
+  js_of_ocaml
+  js_of_ocaml-ppx
+  js_of_ocaml-lwt
+  lwt
+  lwt_ppx
+  (ounit2 :with-test))
  (tags
   ("add topics" "to describe" your project)))
 

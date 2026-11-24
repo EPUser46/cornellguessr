@@ -13,6 +13,13 @@ depends: [
   "dune" {>= "3.24"}
   "ocaml"
   "leaflet"
+  "yojson"
+  "js_of_ocaml"
+  "js_of_ocaml-ppx"
+  "js_of_ocaml-lwt"
+  "lwt"
+  "lwt_ppx"
+  "ounit2" {with-test}
   "odoc" {with-doc}
 ]
 build: [

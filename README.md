@@ -15,7 +15,7 @@ az549
 
 
 Install dependencies (leaflet in dune-project):
-`opam install --deps-only`
+`opam install . --deps-only --with-test`
 
 Install Ocaml-Playwright to test browser:
 `opam pin add playwright https://github.com/dmytro-melno/ocaml-playwright.git`
