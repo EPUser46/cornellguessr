@@ -10,9 +10,6 @@ type location = {
 
 type t = { locations : location array }
 
-let distance (c1 : coord) (c2 : coord) : float =
-  abs_float (c1.lon -. c2.lon) +. abs_float (c1.lat -. c2.lat)
-
 let pick (data : t) (rng : Random.State.t) : location =
   data.locations.(Random.State.int rng (Array.length data.locations))
 

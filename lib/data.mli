@@ -14,9 +14,6 @@ type t
 val init : string -> t
 (**[init json_path] initializes the data with a path to metadata json*)
 
-val distance : coord -> coord -> float
-(**[distance c1 c2] calculates the distance between two coordinates*)
-
 val pick : t -> Random.State.t -> location
 (**[pick t rng] randomly picks a photo*)
 
