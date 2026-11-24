@@ -20,6 +20,7 @@ Install dependencies (leaflet in dune-project):
 Install Ocaml-Playwright to test browser:
 `opam pin add playwright https://github.com/dmytro-melno/ocaml-playwright.git`
 `opam install eio_main`
+`ocaml-playwright install --with-deps chromium`
 
 To add new photos/locations:
 

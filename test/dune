@@ -1,7 +1,7 @@
 (tests
  (names test_data test_accounts test_round test_timer)
  (libraries cornellguessr ounit2 js_of_ocaml)
- (modules test_data test_accounts test_round)
+ (modules test_data test_accounts test_round test_timer)
  (deps
    ../public/metadata_test.json
    ../public/metadata.json
