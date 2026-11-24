@@ -12,7 +12,7 @@ val total_rounds : int
 (** The number of total rounds in a game (5)*)
 
 val init : Random.State.t -> Data.t -> t
-(**[init rng locs] is a new game whose locations (rounds) are picks from [locs]*)
+(**[init rng data] is a new game by creating the first round selected from [data]*)
 
 val game_tick : t -> float -> t
 (**[game_tick state dt] updates the game state with an updated round based on the time elapsed [dt]*)
