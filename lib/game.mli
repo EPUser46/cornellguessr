@@ -20,6 +20,9 @@ val game_tick : t -> float -> t
 val place_pin : t -> Data.coord -> t
 (**[place_pin state (lat, long)] is [state] with the current round's guess set to [(lat, lng)] (replaces earlier guesses). If current round submitted, [st] is unchanged.*)
 
+val result : t -> Round.result option
+(**[result state] is the current round's result: [None] when the round is still playing, [Some r] once it has been submitted.*)
+
 val submit : t -> t
 (**[submit state] scores the current round's guess. If no pin has been placed or if round already submitted, [state] unchanged.*)
 

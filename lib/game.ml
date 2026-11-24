@@ -17,8 +17,11 @@ let round_number state =
 let finished_rounds state = 
   List.rev state.finished
 
+let result state = 
+  state.result
+
 let init rng data =
-  {rng; data; pin = None; current = Round.create rng data; result = None; finished = []} (**unsure about time arg. to Round.create / where game gets it from*)
+  {rng; data; pin = None; current = Round.create rng data; result = None; finished = []} 
 
 let game_tick state dt =
   match state.result with
@@ -40,7 +43,7 @@ let place_pin state coord =
 
 let submit state =
   match state.pin, state.result with
-  | Some coord, None -> { state with result = Some (Round.guess state.current coord)} (**currently unsure about time arg.*)
+  | Some coord, None -> { state with result = Some (Round.guess state.current coord)} 
   | _ -> state
 
 let total_points state =
