@@ -8,8 +8,13 @@ build:
 run: build
 	cd _build/default/public && python3 -m http.server $(PORT)
 
+# run Ocaml tests
 test:
 	dune runtest
+
+# run browser tests
+test-browser:
+	dune exec ./test/test_browser_map.exe
 
 clean:
 	dune clean

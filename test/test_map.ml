@@ -2,6 +2,7 @@ open OUnit2
 open Cornellguessr
 open Js_of_ocaml
 
+(* this is UNUSED because I don't want to write tests that have to compile ocaml into js *)
 let test_create_map _ =
   let test_doc = Dom_html.document in
   let map_div = Dom_html.createDiv test_doc in

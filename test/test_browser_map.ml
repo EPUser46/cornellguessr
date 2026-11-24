@@ -1,4 +1,3 @@
-(* This is just example code from the github *)
 open Playwright
 
 let () =
