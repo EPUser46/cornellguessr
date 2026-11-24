@@ -9,7 +9,7 @@ type t = {
 }
 
 let create (rng : Random.State.t) (data : Data.t) : t =
-  { location = Data.pick data rng; timer = Timer.create_timer 3.0 }
+  { location = Data.pick data rng; timer = Timer.create_timer 0.05 }
 
 let location t : Data.location = t.location
 let time_left t : float = Timer.get_remaining_time t.timer

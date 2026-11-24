@@ -1,5 +1,6 @@
 open Js_of_ocaml
 open Cornellguessr
+open Js_of_ocaml_lwt
 
 let metadata_path = "/static/metadata.json"
 
@@ -62,6 +63,43 @@ let save_leaderboard board =
         (Js.string leaderboard_key)
         (Js.string (Accounts.to_json board))
 
+(* Game Loop: if some result, exit loop and return such result (not sure if needed); o/w take a tick on game of 1.0s and loop *)
+let rec game_loop game =
+  match (Game.result !game) with
+  | Some result -> Lwt.return result
+  | None -> 
+    let%lwt () = Lwt_js.sleep 1.0 in
+    game := Game.game_tick !game 1.0;
+    game_loop game
+
+let check_end game =
+  if Game.round_number !game < Game.total_rounds then set_disabled "next-btn" false
+  else begin
+    set_status (Printf.sprintf "Game over! Total: %d points" (Game.total_points !game));
+    set_hidden "finish" false
+  end
+
+let start_round_timer game display map_record =
+        (* start game loop, and returns *)
+      Lwt.async (fun () ->
+      let%lwt result = game_loop game in
+      match !game.pin with
+        | None ->
+          Display.show_error display "No Guess.";
+          game := Game.submit !game;
+          set_disabled "guess-btn" true;
+          check_end game;
+          Lwt.return_unit
+        | Some pin ->
+          game := Game.submit !game;
+          Display.show_result display !game;
+          let answer = (Round.location (Game.current_round !game)).coord in
+          Map.create_line pin answer map_record;
+          set_disabled "guess-btn" true;
+          check_end game;
+          Lwt.return_unit
+        )
+
 let player_name () =
   match
     Dom_html.getElementById_coerce "player-name" Dom_html.CoerceTo.input
@@ -87,6 +125,8 @@ let () =
       let game = ref (Game.init (Random.State.make_self_init ()) data) in
       Display.show_image display (Round.location (Game.current_round !game));
       show_round_number !game;
+
+      start_round_timer game display map_record;
 
       (* Event handler for map pin place. *)
       Map.map_click_handler map_record (fun coords ->
@@ -127,6 +167,7 @@ let () =
       (* Event handler for next round. *)
       on_click "next-btn" (fun () ->
           game := Game.next_round !game;
+          start_round_timer game display map_record;
           Display.reset_round display;
           Display.show_image display (Round.location (Game.current_round !game));
           Map.reset_map map_record bakerlab_coord default_zoom;

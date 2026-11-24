@@ -28,7 +28,7 @@ let game_tick state dt =
   | Some _ -> state
   | None -> (* the round is pending *)
     let current = Round.update_round state.current dt in
-    if Round.time_left current = 0.0
+    if Round.time_left current <= 0.0
       then {state with current; pin = None; result = Some {Round.distance = infinity; points = 0}}
   else
     {state with current}
