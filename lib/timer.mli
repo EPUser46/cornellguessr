@@ -17,7 +17,7 @@ type t
 val get_remaining_time: t -> float
 (** [get_remaining_time t] returns the number of SECONDS remaining in [t]*)
 val decr_time: t -> float -> t
-(** [decr_time t dt] decrements the remaining time in [t] by exactly [dt] seconds*)
+(** [decr_time t dt] decrements the remaining time in [t] by exactly [dt] SECONDS*)
 val time_up: t -> bool
 (** [time_up t] returns true when remaining time in [t] is less than 0*)
 val create_timer: float -> t

@@ -1,7 +1,37 @@
 (tests
- (names test_data test_accounts test_round test_game)
- (libraries cornellguessr ounit2)
+
+ (names test_data test_accounts test_round test_timer)
+ (libraries cornellguessr ounit2 js_of_ocaml)
+ (modules test_data test_accounts test_round test_timer)
+
  (deps
-   ../public/metadata_test.json 
+   ../public/metadata_test.json
    ../public/metadata.json
-  (glob_files ../public/jpg_photos/*)))
+  (glob_files ../public/jpg_photos/*))
+  (preprocess (pps js_of_ocaml-ppx))
+  )
+
+(executable 
+  (name test_browser_map)
+  (libraries playwright eio_main ounit2)
+  )
+
+(executable
+ (name test_display)
+ (modules test_display)
+ (modes js)
+ (libraries cornellguessr js_of_ocaml)
+ (js_of_ocaml
+  (flags (:standard --file %{dep:../public/metadata_test.json}))))
+
+(copy_files ../public/style.css)
+
+(rule
+ (target display.html)
+ (deps
+  display.template.html
+  test_display.bc.js
+  style.css
+  (glob_files jpg_photos/*.jpg))
+ (action
+  (copy display.template.html %{target})))

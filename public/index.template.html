@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cornell Guessr</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   </head>
   <body>
@@ -13,7 +14,7 @@
         <h1>CornellGuessr</h1>
       </header>
 
-      <p id="status" role="status">Click to begin.</p>
+      <p id="status" role="status">Loading…</p>
 
       <!-- Game -->
       <section id="game"></section>
@@ -27,12 +28,17 @@
         <button id="next-btn" type="button" disabled>Next round</button>
       </section>
 
+      <!-- Game over -->
+      <section id="finish" hidden>
+        <label>Your name <input id="player-name" type="text" maxlength="22"></label>
+        <button id="save-btn" type="button">Save score</button>
+      </section>
+
       <section>
         <h2>Leaderboard</h2>
         <table id = "leaderboard" style ="width:100%">
         </table>
       </section>
-      <footer>Footer</footer>
       <script src="main.js"></script>
     </main>
   </body>
