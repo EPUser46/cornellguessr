@@ -23,13 +23,21 @@ let result state =
 let init rng data =
   {rng; data; pin = None; current = Round.create rng data; result = None; finished = []} 
 
+
+let submit state =
+  match state.pin, state.result with
+  | Some coord, None -> { state with result = Some (Round.guess state.current coord)} 
+  | _ -> state
+
 let game_tick state dt =
   match state.result with
   | Some _ -> state
   | None -> (* the round is pending *)
     let current = Round.update_round state.current dt in
-    if Round.time_left current <= 0.0
-      then {state with current; pin = None; result = Some {Round.distance = infinity; points = 0}}
+    if Round.time_left current <= 0.0 then
+      match state.pin with
+      | Some _ -> submit state
+      | None -> {state with current; pin = None; result = Some {Round.distance = infinity; points = 0}}
   else
     {state with current}
 
@@ -40,11 +48,6 @@ let next_round state =
 
 let place_pin state coord = 
   if state.result = None then {state with pin = Some coord} else state
-
-let submit state =
-  match state.pin, state.result with
-  | Some coord, None -> { state with result = Some (Round.guess state.current coord)} 
-  | _ -> state
 
 let total_points state =
   let finished_points = List.fold_left (fun acc (_, (r : Round.result)) -> acc + r.points) 0 state.finished

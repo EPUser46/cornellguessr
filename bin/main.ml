@@ -80,7 +80,7 @@ let check_end game =
   end
 
 let start_round_timer game display map_record =
-        (* start game loop, and returns *)
+      (* start game loop, and returns *)
       Lwt.async (fun () ->
       let%lwt result = game_loop game in
       match !game.pin with
@@ -126,6 +126,7 @@ let () =
       Display.show_image display (Round.location (Game.current_round !game));
       show_round_number !game;
 
+      (* start roudn timer *)
       start_round_timer game display map_record;
 
       (* Event handler for map pin place. *)
@@ -167,6 +168,7 @@ let () =
       (* Event handler for next round. *)
       on_click "next-btn" (fun () ->
           game := Game.next_round !game;
+          (* start NEW roudn timer *)
           start_round_timer game display map_record;
           Display.reset_round display;
           Display.show_image display (Round.location (Game.current_round !game));
