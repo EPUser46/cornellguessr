@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Display visual check</title>
+    <link rel="stylesheet" href="style.css">
+    <style>#game img { max-width: 100%; max-height: 50vh; }</style>
+    <script defer src="test_display.bc.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Display visual check</h1>
+      <p>State: round 1, pin placed at Baker Lab and submitted.</p>
+      <div id="game"></div>
+      <h2>Leaderboard</h2>
+      <table id="leaderboard" style="text-align: center; width: 30%"></table>
+
+      <h2>What you should see</h2>
+      <ul>
+        <li>A Cornell photo (IMG_6138), alt text "Cornell Photo"</li>
+        <li>HUD: "180s left · 565 pts"</li>
+        <li>Result: "566 m away, 565 points"</li>
+        <li>Status: "Where is this?"</li>
+        <li>Leaderboard: header Rank / Name / Score, then Julie 67, Angie 40, Clarice 22</li>
+        <li>No "Couldn't load data" message</li>
+      </ul>
+    </main>
+  </body>
+</html>
