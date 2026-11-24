@@ -71,7 +71,8 @@ let player_name () =
 
 let () =
   let display = Display.init_round () in
-  let map = Map.create_map "map" bakerlab_coord (Some 100) in
+  let default_zoom = Some 100 in
+  let map_record = Map.create_map "map" bakerlab_coord default_zoom in
 
   (* Load leaderboard. *)
   let board = ref (load_leaderboard ()) in
@@ -88,7 +89,7 @@ let () =
       show_round_number !game;
 
       (* Event handler for map pin place. *)
-      Map.map_click_handler map (fun coords ->
+      Map.map_click_handler map_record (fun coords ->
           game := Game.place_pin !game coords);
 
       (* Event handler for guess submit. *)
@@ -100,7 +101,7 @@ let () =
               game := Game.submit !game;
               Display.show_result display !game;
               let answer = (Round.location (Game.current_round !game)).coord in
-              Map.create_line pin answer map;
+              Map.create_line pin answer map_record;
               set_disabled "guess-btn" true;
               if Game.round_number !game < Game.total_rounds then
                 set_disabled "next-btn" false
@@ -128,6 +129,7 @@ let () =
           game := Game.next_round !game;
           Display.reset_round display;
           Display.show_image display (Round.location (Game.current_round !game));
+          Map.reset_map map_record bakerlab_coord default_zoom;
           show_round_number !game;
           set_disabled "guess-btn" false;
           set_disabled "next-btn" true)
