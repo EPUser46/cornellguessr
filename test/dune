@@ -1,7 +1,14 @@
 (tests
- (names test_data test_accounts test_round)
- (libraries cornellguessr ounit2)
+ (names test_data test_accounts test_round test_timer test_map)
+ (libraries cornellguessr ounit2 js_of_ocaml)
  (deps
    ../public/metadata_test.json 
    ../public/metadata.json
-  (glob_files ../public/jpg_photos/*)))
+  (glob_files ../public/jpg_photos/*))
+  (preprocess (pps js_of_ocaml-ppx))
+  )
+
+(executable 
+  (name test_browser_map)
+  (libraries playwright eio_main ounit2)
+  )

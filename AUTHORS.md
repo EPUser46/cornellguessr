@@ -10,3 +10,4 @@
 
 - Data uses ExifTool and ImageMagick to read image metadata and convert between image file types.
 - Claude to draft code snippets that rely on libraries we hadn't used before (such as Yojson).
+- Map uses JS Leaflet library & OpenStreetMap
