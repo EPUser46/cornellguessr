@@ -18,11 +18,19 @@ let () =
     (* success *)
     print_endline "Map test passed.";
 
-    (* Test #1: Click on map creates marker*)
+    (* Test #2: Click on map creates marker*)
     Locator.click map; (* This clicks on the map*)
     let marker = Page.locator page ".leaflet-marker-icon" in
     Expect.to_be_visible marker;
     (* success *)
     print_endline "Marker click test passed.";
+
+    (* Test #3: Click "guess" and draw line*)
+    let guess_but = Page.locator page "#guess-btn" in
+    Locator.click guess_but;
+    let line = Page.locator page ".leaflet-overlay-pane path" in
+    Expect.to_be_visible line;
+    (* success *)
+    print_endline "Draw line test passed.";
 
     Browser.close browser
