@@ -60,6 +60,9 @@ let map_click_handler map_record callback =
   ) map_record.map
 
 let create_line (guess_coords: Data.coord )(img_coords: Data.coord) map_record =
+  (match map_record.current_line with
+  | Some line -> Leaflet.Layer.remove_from map_record.map line
+  | None -> ());
   let coords = [| convert_coords guess_coords; convert_coords img_coords|] in
   let line = (Leaflet.Layer.create_polyline coords) in
   Leaflet.Layer.add_to map_record.map line;
@@ -74,4 +77,6 @@ let reset_map map_record coords zoom =
   | Some marker -> Leaflet.Layer.remove_from map_record.map marker
   | None -> ());
 
+  map_record.current_marker <- None;
+  map_record.current_line <- None;
   Leaflet.Map.set_view (convert_coords coords) map_record.map ~zoom:zoom
