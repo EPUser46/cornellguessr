@@ -166,6 +166,7 @@ let () =
           | None ->
               Display.show_error display "Click the map to place a pin first."
           | Some pin ->
+              game := Game.submit !game;
               submit_guess game display map_record round_up);
 
       (* Event handler for saving the score at the end of the game. *)
